@@ -542,4 +542,29 @@
 
     // filter buttons
     function buildFilterButtons() {
-        const container = document.getEle
+        const container = document.getElementById('crewFilterButtons');
+        let btnsHtml = `<button data-crew="all" class="crew-btn active">Semua Tim (${crewList.length})</button>`;
+        crewList.forEach(crew => {
+            btnsHtml += `<button data-crew="${crew.id}" class="crew-btn">${crew.name}</button>`;
+        });
+        container.innerHTML = btnsHtml;
+        
+        document.querySelectorAll('.crew-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.crew-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-crew');
+                renderCalendar();
+            });
+        });
+    }
+
+    // inisialisasi
+    function init() {
+        buildFilterButtons();
+        renderCalendar();
+    }
+    init();
+</script>
+</body>
+</html>
