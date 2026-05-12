@@ -403,6 +403,10 @@
         "Weekly Promo": "reports/weekly/sales-summary.html",
         "Weekly Kursi": "reports/weekly/sales-summary.html",
         "Weekly PPTS": "reports/weekly/sales-summary.html",
+        "Input LPB Minyak": "reports/weekly/sales-summary.html",
+        "Input LPB Frozen": "reports/weekly/sales-summary.html",
+        "Input LPB Dry": "reports/weekly/sales-summary.html",
+        "Input I-Quest": "reports/weekly/sales-summary.html",
         
         
         // MONTHLY REPORTS
@@ -422,6 +426,8 @@
         // APP REPORTS
         "Juklak Promo": "reports/incident/kebersihan.html",
         "Memo OPS": "reports/incident/kecelakaan-kerja.html"
+        "PKWT": "reports/weekly/sales-summary.html",
+        "Sanksi": "reports/weekly/sales-summary.html",
         
     };
     
@@ -448,17 +454,17 @@
             "Food Safety", "Utility"
         ],
         weekly: [
-            "Weekly Promo", "Weekly Kursi" , "Weekly PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry"
+            "Weekly Promo", "Weekly Kursi" , "Weekly PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry", "Input I-Quest", "Weekly KFM"
         ],
         monthly: [
-            "PNL", "Inventory", "Dep Task", "RMO" , "Cuti Karyawan" , "Kas Karyawan" 
+            "PNL", "Inventory", "Dep Task", "RMO" , " Report Improvement", "TCMH"
   
         ],
         annual: [
-            "Bisnis Plan", "Breakdown Sales" , "IPP", "Kinerja Karyawan"
+            "Bisnis Plan", "Breakdown Sales" , "IPP", "Kinerja Karyawan", "Peer To Peer", "Cuti Karyawan", "Kas Karyawan"
         ],
         app: [
-            "Juklak Promo", "Memo OPS"
+            "Juklak Promo", "Memo OPS", "PKWT", "Sanksi"
         ]
     };
     
@@ -489,6 +495,10 @@
         if (lower.includes('bisnis plan')) return { icon: 'fa-cart-simple', bg: '#E8DAEF', color: '#8E44AD' };
         if (lower.includes('juklak promo')) return { icon: 'fa-bandage', bg: '#FDE2E4', color: '#E84393' };
         if (lower.includes('memo ops')) return { icon: 'fa-book-open', bg: '#FDE2E4', color: '#E84393' };
+        if (lower.includes('inventory')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
+        if (lower.includes('inventory')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
+        if (lower.includes('PKWT')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
+        if (lower.includes('inventory')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
         if (lower.includes('inventory')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
         if (lower.includes('financial') || lower.includes('modal')) return { icon: 'fa-coins', bg: '#FDEBD0', color: '#E67E22' };
         if (lower.includes('insiden') || lower.includes('kebersihan') || lower.includes('kecelakaan')) return { icon: 'fa-bell', bg: '#FADBD8', color: '#E74C3C' };
