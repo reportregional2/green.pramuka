@@ -547,7 +547,15 @@
             card.className = 'report-card';
             card.setAttribute('data-report', report);
             card.setAttribute('data-cat', category);
-            
+            card.innerHTML = `
+                <div class="icon-box" style="background: ${bg}; color: ${color};">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="report-info">
+                    <h4>${report}</h4>
+                    <span><i class="fas fa-external-link-alt"></i> </span>
+                </div>
+            `;
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const reportName = card.getAttribute('data-report');
