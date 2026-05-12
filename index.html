@@ -344,10 +344,10 @@
                 </div>
                 <div class="category-item" data-category="yearly">
                     <i class="fas fa-chart-line"></i>
-                    <span>Yearly</span>
+                    <span>Annual</span>
                 </div>
                 <div class="category-item" data-category="incident">
-                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="fas fa-tag"></i>
                     <span>App</span>
                 </div>
             </div>
@@ -409,13 +409,13 @@
         "Dept Task": "reports/monthly/minyak-bulanan.html",
         
         
-        // YEARLY REPORTS
+        // ANNUAL REPORTS
         "Bisnis Plan": "https://drive.google.com/drive/folders/1IvprItJOuCTS_zjJhdHZosh5yzQmmh5R?usp=sharing",
         "Yearly Performance KPI": "reports/yearly/kpi.html",
         "Food Safety Year Summary": "reports/yearly/food-safety-summary.html",
         
         
-        // INCIDENT REPORTS
+        // APP REPORTS
         "Insiden Kebersihan": "reports/incident/kebersihan.html",
         "Kecelakaan Kerja": "reports/incident/kecelakaan-kerja.html"
         
@@ -450,10 +450,10 @@
             "PNL", "Dep Task", "Bincard Frozen Month" 
   
         ],
-        yearly: [
+        annual: [
             "Annual Financial Report", "Yearly Performance KPI"
         ],
-        incident: [
+        app: [
             "Insiden Kebersihan", "Kecelakaan Kerja"
         ]
     };
@@ -530,8 +530,8 @@
         const container = document.getElementById('reportGrid');
         if (!container) return;
         
-        const categoryNames = { daily: "Daily Report", weekly: "Weekly Report", monthly: "Monthly Report", yearly: "Yearly Report", incident: "Insiden Report" };
-        const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan mingguan", monthly: "Laporan bulanan", yearly: "Laporan tahunan", incident: "Laporan insiden" };
+        const categoryNames = { daily: "Daily Report", weekly: "Weekly Report", monthly: "Monthly Report", yearly: "Annual Report", incident: "Insiden Report" };
+        const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Laporan insiden" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
         
