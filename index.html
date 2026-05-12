@@ -112,10 +112,10 @@
         .category-item[data-category="weekly"] span { color: #229954; font-weight: 700; }
         .category-item[data-category="monthly"] i { color: #3498DB; }
         .category-item[data-category="monthly"] span { color: #2471A3; font-weight: 700; }
-        .category-item[data-category="yearly"] i { color: #9B59B6; }
-        .category-item[data-category="yearly"] span { color: #7D3C98; font-weight: 700; }
-        .category-item[data-category="incident"] i { color: #E74C3C; }
-        .category-item[data-category="incident"] span { color: #C0392B; font-weight: 700; }
+        .category-item[data-category="annual"] i { color: #9B59B6; }
+        .category-item[data-category="annual"] span { color: #7D3C98; font-weight: 700; }
+        .category-item[data-category="app"] i { color: #E74C3C; }
+        .category-item[data-category="app"] span { color: #C0392B; font-weight: 700; }
 
         .category-item.active {
             background: rgba(0,0,0,0.05);
@@ -416,8 +416,8 @@
         
         
         // APP REPORTS
-        "Insiden Kebersihan": "reports/incident/kebersihan.html",
-        "Kecelakaan Kerja": "reports/incident/kecelakaan-kerja.html"
+        "Juklak Promo": "reports/incident/kebersihan.html",
+        "Memo Divisi OPS": "reports/incident/kecelakaan-kerja.html"
         
     };
     
@@ -454,7 +454,7 @@
             "Annual Financial Report", "Yearly Performance KPI"
         ],
         app: [
-            "Insiden Kebersihan", "Kecelakaan Kerja"
+            "Juklak Promo", "Memo Divisi OPS"
         ]
     };
     
@@ -531,7 +531,7 @@
         if (!container) return;
         
         const categoryNames = { daily: "Daily Report", weekly: "Weekly Report", monthly: "Monthly Report", yearly: "Annual Report", incident: "Insiden Report" };
-        const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Laporan insiden" };
+        const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
         
