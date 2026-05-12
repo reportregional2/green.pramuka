@@ -533,7 +533,7 @@
         const container = document.getElementById('reportGrid');
         if (!container) return;
         
-        const categoryNames = { daily: "Daily Report", weekly: "Weekly Report", monthly: "Monthly Report", yearly: "Annual Report", incident: "Insiden Report" };
+        const categoryNames = { daily: "Daily Report", weekly: "Weekly Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
         const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
