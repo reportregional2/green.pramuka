@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>GPS Dashboard</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef2f9 0%, #e0e6f0 100%);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 1.2rem;
+        }
+
+        .dashboard {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header-main {
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(16px);
+            border-radius: 60px;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e2a3a, #2c3e50);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .datetime-wrapper {
+            display: flex;
+            gap: 1.2rem;
+            background: rgba(255,255,255,0.6);
+            padding: 0.45rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .datetime-wrapper i {
+            margin-right: 6px;
+            color: #e67e22;
+        }
+
+        /* Layout fleksibel */
+        .flex-layout {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* SIDEBAR KATEGORI - warna berbeda setiap kategori */
+        .categories-sidebar {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 44px;
+            padding: 1.2rem 0.8rem;
+            border: 1px solid rgba(255,255,255,0.6);
+            flex: 0 0 200px;
+            align-self: start;
+            position: sticky;
+            top: 1rem;
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.9rem 0.5rem;
+            border-radius: 32px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            background: transparent;
+        }
+
+        /* WARNA BERBEDA UNTUK SETIAP KATEGORI */
+        .category-item[data-category="daily"] i { color: #F39C12; }
+        .category-item[data-category="daily"] span { color: #D35400; font-weight: 700; }
+        .category-item[data-category="weekly"] i { color: #2ECC71; }
+        .category-item[data-category="weekly"] span { color: #229954; font-weight: 700; }
+        .category-item[data-category="monthly"] i { color: #3498DB; }
+        .category-item[data-category="monthly"] span { color: #2471A3; font-weight: 700; }
+        .category-item[data-category="yearly"] i { color: #9B59B6; }
+        .category-item[data-category="yearly"] span { color: #7D3C98; font-weight: 700; }
+        .category-item[data-category="incident"] i { color: #E74C3C; }
+        .category-item[data-category="incident"] span { color: #C0392B; font-weight: 700; }
+
+        .category-item.active {
+            background: rgba(0,0,0,0.05);
+            backdrop-filter: blur(4px);
+            border-left: 3px solid currentColor;
+        }
+
+        .reminder-dot {
+            position: absolute;
+            top: 8px;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px white;
+            animation: pulseRed 1.2s infinite;
+        }
+
+        @keyframes pulseRed {
+            0% { opacity: 0.6; transform: scale(0.9);}
+            100% { opacity: 1; transform: scale(1.2);}
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 44px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.6rem;
+            gap: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid rgba(230,126,34,0.2);
+        }
+
+        .category-title h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e2a3a, #2c3e50);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .category-title p {
+            font-size: 0.75rem;
+            color: #e67e22;
+            font-weight: 500;
+        }
+
+        .last-activity {
+            background: rgba(255,255,255,0.8);
+            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* REPORT GRID */
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+        }
+
+        .report-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 28px -14px rgba(0,0,0,0.15);
+            border-left: 4px solid #e67e22;
+        }
+
+        .report-card:active {
+            transform: scale(0.98);
+        }
+
+        .icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .report-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: #1e2f3e;
+        }
+
+        .report-info span {
+            font-size: 0.7rem;
+            color: #e67e22;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Toast notifikasi */
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            z-index: 1100;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+        .toast-msg.show {
+            opacity: 1;
+            bottom: 30px;
+        }
+
+        footer {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6f8eae;
+        }
+
+        /* Responsive */
+        @media (max-width: 780px) {
+            body { padding: 0.8rem; }
+            .flex-layout { flex-direction: column; }
+            .categories-sidebar {
+                flex: auto;
+                position: static;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding: 0.8rem;
+                scrollbar-width: thin;
+            }
+            .categories-container {
+                flex-direction: row;
+                gap: 0.5rem;
+                width: max-content;
+            }
+            .category-item {
+                display: inline-flex;
+                flex-direction: column;
+                padding: 0.6rem 1rem;
+                min-width: 70px;
+            }
+            .category-item.active {
+                border-left: none;
+                border-bottom: 3px solid;
+            }
+            .reminder-dot {
+                top: 4px;
+                right: 8px;
+            }
+            .main-content { padding: 1rem; }
+            .category-title h2 { font-size: 1.3rem; }
+            .report-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+        @media (min-width: 781px) and (max-width: 1024px) {
+            .report-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <!-- HEADER -->
+    <div class="header-main">
+        <div class="logo">
+            <h1><i class="fas fa-map-marker-alt" style="color:#8b0000;"></i> HokBen Green Pramuka Square Mall</h1>
+        </div>
+        <div class="datetime-wrapper">
+            <div><i class="far fa-calendar-alt"></i> <span id="currentDate">--</span></div>
+            <div><i class="far fa-clock"></i> <span id="currentTime">--:--:--</span></div>
+        </div>
+    </div>
+
+    <div class="flex-layout">
+        <!-- SIDEBAR KATEGORI -->
+        <div class="categories-sidebar">
+            <div class="categories-container">
+                <div class="category-item" data-category="daily" id="catDaily">
+                    <i class="fas fa-sun"></i>
+                    <span>Daily</span>
+                    <div class="reminder-dot" id="dailyReminderDot" style="display: none;"></div>
+                </div>
+                <div class="category-item" data-category="weekly">
+                    <i class="fas fa-calendar-week"></i>
+                    <span>Weekly</span>
+                </div>
+                <div class="category-item" data-category="monthly">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Monthly</span>
+                </div>
+                <div class="category-item" data-category="yearly">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Yearly</span>
+                </div>
+                <div class="category-item" data-category="incident">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>App</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN AREA -->
+        <div class="main-content">
+            <div class="info-bar">
+                <div class="category-title">
+                    <h2 id="categoryName">Daily Report</h2>
+                    <p id="categoryDesc">Laporan Harian</p>
+                </div>
+                <div class="last-activity" id="lastActivityWidget">
+                    <i class="fas fa-history"></i>
+                    <span id="lastActivityText">Belum ada aktivitas</span>
+                </div>
+            </div>
+            <div id="reportGrid" class="report-grid">
+                <!-- dinamis -->
+            </div>
+        </div>
+    </div>
+    <footer>
+        <i class="fas fa-external-link-alt"></i> Klik kartu laporan untuk membuka halaman 
+    </footer>
+</div>
+<div id="toastMsg" class="toast-msg">Membuka laporan...</div>
+
+<script>
+    // ======================= MAPPING URL SESUAI NAMA LAPORAN =======================
+    // Format: "Nama Laporan" : "URL tujuan lengkap"
+    // Silahkan ganti URL sesuai dengan lokasi file html / endpoint di server Anda
+    const reportUrlMap = {
+        // DAILY REPORTS
+        "Line Bar": "reports/daily/select_linebar.html",
+        "Form Organoleptik": "reports/daily/select_organoleptik.html",
+        "Form Penerimaan Barang": "reports/daily/select_penerimaan.html",
+        "Form Log Book": "reports/daily/select_logbook.html",
+        "Buku Briefing": "reports/daily/select_briefing.html",
+        "New Bincard Frozen": "reports/daily/select_bincard_frozen.html",
+        "New Bincard Dry": "reports/daily/select_bincard_dry.html",
+        "Perhitungan Minyak": "reports/daily/select_oil.html",
+        "Suhu Ambience": "reports/daily/select_suhu_amb.html",
+        "Suhu Equipment": "reports/daily/select_suhu_eqp.html",
+        "Suhu Product": "reports/daily/select_suhu_prod.html",
+        "Holding Time": "reports/daily/select_ht.html",
+        "Kontrol Pemasakan Menu Basah": "reports/daily/select_main_menu.html",
+        "Kontrol Pemasakan Nasi": "reports/daily/select_pemasakan_nasi.html",
+        "Food Safety": "reports/daily/select_food_safety.html",
+        "Utility": "reports/daily/select_utility.html",
+        
+        // WEEKLY REPORTS
+        "Weekly Promo Summary": "reports/weekly/sales-summary.html",
+        "Weekly Kursi Summary": "reports/weekly/sales-summary.html",
+        
+        
+        // MONTHLY REPORTS
+        "PNL": "reports/monthly/stok-bulanan.html",
+        "Dept Task": "reports/monthly/minyak-bulanan.html",
+        
+        
+        // YEARLY REPORTS
+        "Bisnis Plan": "https://drive.google.com/drive/folders/1IvprItJOuCTS_zjJhdHZosh5yzQmmh5R?usp=sharing",
+        "Yearly Performance KPI": "reports/yearly/kpi.html",
+        "Food Safety Year Summary": "reports/yearly/food-safety-summary.html",
+        
+        
+        // INCIDENT REPORTS
+        "Insiden Kebersihan": "reports/incident/kebersihan.html",
+        "Kecelakaan Kerja": "reports/incident/kecelakaan-kerja.html"
+        
+    };
+    
+    // Fungsi untuk mendapatkan URL berdasarkan nama laporan
+    // Jika tidak ditemukan mapping, akan menggunakan URL default berdasarkan slug
+    function getReportUrl(reportName, category) {
+        // Cek apakah ada mapping khusus
+        if (reportUrlMap[reportName]) {
+            return reportUrlMap[reportName];
+        }
+        
+        // Fallback: generate URL berdasarkan kategori dan slug nama
+        const slug = reportName.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '');
+        const categoryPath = category === 'incident' ? 'incident' : category;
+        return `/reports/${categoryPath}/${slug}.html`;
+    }
+    
+    // ===================== DATA LAPORAN =====================
+    const reportsDB = {
+        daily: [
+            "Line Bar", "Form Organoleptik", "Form Penerimaan Barang", "Form Log Book", "Buku Briefing",
+            "New Bincard Frozen", "New Bincard Dry", "Perhitungan Minyak", "Suhu Ambience", "Suhu Equipment",
+            "Suhu Product", "Holding Time", "Kontrol Pemasakan Menu Basah", "Kontrol Pemasakan Nasi",
+            "Food Safety", "Utility"
+        ],
+        weekly: [
+            "Weekly Promo Summary", "Weekly Kursi"
+        ],
+        monthly: [
+            "PNL", "Dep Task", "Bincard Frozen Month" 
+  
+        ],
+        yearly: [
+            "Annual Financial Report", "Yearly Performance KPI"
+        ],
+        incident: [
+            "Insiden Kebersihan", "Kecelakaan Kerja"
+        ]
+    };
+    
+    // Warna ikon laporan (warna-warni)
+    function getIconStyle(reportName) {
+        const lower = reportName.toLowerCase();
+        if (lower.includes('line')) return { icon: 'fa-chart-line', bg: '#FFE8D6', color: '#E67E22' };
+        if (lower.includes('organoleptik')) return { icon: 'fa-clipboard-list', bg: '#FDE2E4', color: '#E84393' };
+        if (lower.includes('penerimaan')) return { icon: 'fa-dolly', bg: '#D4F1F9', color: '#1F6392' };
+        if (lower.includes('log book')) return { icon: 'fa-book', bg: '#E8EAF6', color: '#5D6D7E' };
+        if (lower.includes('briefing')) return { icon: 'fa-users', bg: '#D9F0EC', color: '#2C9B6B' };
+        if (lower.includes('bincard')) return { icon: 'fa-boxes', bg: '#FDE2C4', color: '#D35400' };
+        if (lower.includes('minyak')) return { icon: 'fa-oil-can', bg: '#FFF2CC', color: '#C0392B' };
+        if (lower.includes('suhu')) return { icon: 'fa-thermometer-half', bg: '#CFE7FF', color: '#2874A6' };
+        if (lower.includes('holding')) return { icon: 'fa-hourglass-half', bg: '#E8DAEF', color: '#8E44AD' };
+        if (lower.includes('pemasakan')) return { icon: 'fa-utensils', bg: '#FAD7A1', color: '#C4450C' };
+        if (lower.includes('food safety')) return { icon: 'fa-shield-alt', bg: '#CCF2E6', color: '#148F77' };
+        if (lower.includes('utility')) return { icon: 'fa-charging-station', bg: '#FADBD8', color: '#CD6155' };
+        if (lower.includes('sales')) return { icon: 'fa-chart-simple', bg: '#D5F5E3', color: '#27AE60' };
+        if (lower.includes('inventory')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
+        if (lower.includes('financial') || lower.includes('modal')) return { icon: 'fa-coins', bg: '#FDEBD0', color: '#E67E22' };
+        if (lower.includes('insiden') || lower.includes('kebersihan') || lower.includes('kecelakaan')) return { icon: 'fa-bell', bg: '#FADBD8', color: '#E74C3C' };
+        return { icon: 'fa-file-alt', bg: '#EDF2F7', color: '#4A627A' };
+    }
+    
+    // ----- LAST ACTIVITY -----
+    let lastActivity = { lastReportName: null, lastCategory: null, timestamp: null };
+    function loadLastActivity() {
+        const stored = localStorage.getItem("gps_last_activity");
+        if (stored) {
+            try { lastActivity = JSON.parse(stored); updateLastActivityUI(); } catch(e) {}
+        } else { document.getElementById("lastActivityText").innerHTML = "Belum ada aktivitas"; }
+    }
+    function updateLastActivityUI() {
+        const span = document.getElementById("lastActivityText");
+        if (lastActivity.timestamp && lastActivity.lastReportName) {
+            const date = new Date(lastActivity.timestamp);
+            const timeStr = date.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' });
+            span.innerHTML = `<i class="fas fa-check-circle" style="color:#2c9b6b;"></i> ${lastActivity.lastReportName} (${timeStr})`;
+        } else { span.innerHTML = "Belum ada aktivitas"; }
+    }
+    function setLastActivity(reportName, category) {
+        lastActivity = { lastReportName: reportName, lastCategory: category, timestamp: Date.now() };
+        localStorage.setItem("gps_last_activity", JSON.stringify(lastActivity));
+        updateLastActivityUI();
+    }
+    
+    // ----- REMINDER DAILY -----
+    const todayStr = new Date().toISOString().slice(0,10);
+    let dailyClickedToday = false;
+    function loadDailyStatus() {
+        const stored = localStorage.getItem(`daily_clicked_${todayStr}`);
+        dailyClickedToday = (stored === 'true');
+        updateDailyReminder();
+    }
+    function markDailyAsClicked() {
+        if (!dailyClickedToday) {
+            dailyClickedToday = true;
+            localStorage.setItem(`daily_clicked_${todayStr}`, 'true');
+            updateDailyReminder();
+        }
+    }
+    function updateDailyReminder() {
+        const dot = document.getElementById('dailyReminderDot');
+        if (dot) dot.style.display = (!dailyClickedToday) ? 'block' : 'none';
+    }
+    
+    // ----- RENDER GRID LAPORAN -----
+    let currentCategory = "daily";
+    function renderReports(category) {
+        currentCategory = category;
+        const reports = reportsDB[category] || [];
+        const container = document.getElementById('reportGrid');
+        if (!container) return;
+        
+        const categoryNames = { daily: "Daily Report", weekly: "Weekly Report", monthly: "Monthly Report", yearly: "Yearly Report", incident: "Insiden Report" };
+        const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan mingguan", monthly: "Laporan bulanan", yearly: "Laporan tahunan", incident: "Laporan insiden" };
+        document.getElementById('categoryName').innerText = categoryNames[category];
+        document.getElementById('categoryDesc').innerText = descMap[category];
+        
+        container.innerHTML = "";
+        if (reports.length === 0) {
+            container.innerHTML = `<div style="padding:2rem; text-align:center;">Tidak ada laporan</div>`;
+            return;
+        }
+        
+        reports.forEach(report => {
+            const { icon, bg, color } = getIconStyle(report);
+            const card = document.createElement('div');
+            card.className = 'report-card';
+            card.setAttribute('data-report', report);
+            card.setAttribute('data-cat', category);
+            card.innerHTML = `
+                <div class="icon-box" style="background: ${bg}; color: ${color};">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="report-info">
+                    <h4>${report}</h4>
+                    <span><i class="fas fa-external-link-alt"></i> </span>
+                </div>
+            `;
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const reportName = card.getAttribute('data-report');
+                const cat = card.getAttribute('data-cat');
+                if (cat === 'daily') markDailyAsClicked();
+                setLastActivity(reportName, cat);
+                
+                // Dapatkan URL berdasarkan mapping
+                const url = getReportUrl(reportName, cat);
+                
+                // Tampilkan toast
+                const toast = document.getElementById('toastMsg');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 1200);
+                
+                // Buka link di tab baru
+                window.open(url, '_blank');
+            });
+            container.appendChild(card);
+        });
+    }
+    
+    // ----- EVENT KATEGORI -----
+    const categoryItems = document.querySelectorAll('.category-item');
+    function setActiveCategory(activeCat) {
+        categoryItems.forEach(item => {
+            const cat = item.getAttribute('data-category');
+            if (cat === activeCat) item.classList.add('active');
+            else item.classList.remove('active');
+        });
+    }
+    categoryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const cat = item.getAttribute('data-category');
+            if (cat) {
+                renderReports(cat);
+                setActiveCategory(cat);
+                document.querySelector('.main-content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // ----- UPDATE JAM DAN TANGGAL -----
+    function updateDateTime() {
+        const now = new Date();
+        const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').innerText = now.toLocaleDateString('id-ID', optionsDate);
+        document.getElementById('currentTime').innerText = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+    
+    // ----- INIT -----
+    function init() {
+        loadLastActivity();
+        loadDailyStatus();
+        renderReports('daily');
+        setActiveCategory('daily');
+        setInterval(() => loadDailyStatus(), 3000);
+    }
+    init();
+</script>
+</body>
+</html>
