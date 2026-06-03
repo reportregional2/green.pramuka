@@ -415,6 +415,7 @@
         "Inventory": "reports/monthly/minyak-bulanan.html",
         "Report Improvement": "https://drive.google.com/drive/folders/19XLzNO1-4mQuo9p7BekQlUyH_apUfNNB?usp=sharing",
         "TCMH": "https://docs.google.com/spreadsheets/d/1DnpmQBHCKFMGt4_6nzLW-RgJsqi1HcxcIQVKASlQ_JU/edit?usp=sharing",
+        "Respon I-Quest": "https://docs.google.com/spreadsheets/d/1DnpmQBHCKFMGt4_6nzLW-RgJsqi1HcxcIQVKASlQ_JU/edit?usp=sharing",
         
         // ANNUAL REPORTS
         "Bisnis Plan": "https://ekabogainti-my.sharepoint.com/:x:/g/personal/arinto_purnomo_hokben_co_id/IQAtNgdPQ6J4TpHF_qiN4Zc2AegTXuUYptHmS252wtiBzWI?e=5VkDpV",
@@ -462,7 +463,7 @@
             "Food Safety", "Utility"
         ],
         monthly: [
-            "PNL", "Inventory", "Dep Task", "RMO" , "Report Improvement", "TCMH"
+            "PNL", "Inventory", "Dep Task", "RMO" , "Report Improvement", "TCMH", "Respon I-Quest"
   
         ],
         annual: [
@@ -492,6 +493,7 @@
         if (lower.includes('cuti karyawan')) return { icon: 'fa-calendar-xmark', bg: '#E8DAEF', color: '#8E44AD' };
         if (lower.includes('ipp')) return { icon: 'fa-stamp', bg: '#E8DAEF', color: '#8E44AD' };
         if (lower.includes('pnl')) return { icon: 'fa-wallet', bg: '#FFF2CC', color: '#C0392B' };
+         if (lower.includes('respon')) return { icon: 'fa-wallet', bg: '#FFF2CC', color: '#C0392B' };
         if (lower.includes('dept task')) return { icon: 'fa-bullhorn', bg: '#FFF2CC', color: '#C0392B' };
         if (lower.includes('report kursi')) return { icon: 'fa-chair', bg: '#CCF2E6', color: '#148F77' };
         if (lower.includes('report promo')) return { icon: 'fa-bullhorn', bg: '#CCF2E6', color: '#148F77' };
