@@ -383,6 +383,14 @@
     const reportUrlMap = {
         // DAILY REPORTS
         "Line Bar": "reports/daily/select_linebar.html",
+        "Input LPB Minyak": "reports/daily/select_lpb_oil.html",
+        "Input LPB Frozen": "reports/daily/select_lpb_frozen.html",
+        "Input LPB Dry": "reports/daily/select_lpb_dry.html",
+        "Input I-Quest": "https://forms.gle/t4ucoQhWz2HiTgif8",
+        "Feedback Dine In": "https://update.hokben.co.id/survey/2?&kdstore=129&valid=0",
+        "Feedback TA": "https://update.hokben.co.id/survey/3?&kdstore=129&valid=0",
+        
+        // Weekly REPORTS
         "Form Organoleptik": "reports/daily/select_organoleptik.html",
         "Form Penerimaan Barang": "reports/daily/select_penerimaan.html",
         "Form Log Book": "reports/daily/select_logbook.html",
@@ -398,17 +406,7 @@
         "Kontrol Pemasakan Nasi": "reports/daily/select_pemasakan_nasi.html",
         "Food Safety": "reports/daily/select_food_safety.html",
         "Utility": "reports/daily/select_utility.html",
-        
-        // Weekly REPORTS
-        "Report Promo": "reports/Weekly/sales-summary.html",
-        "Weekly Kursi": "reports/Weekly/sales-summary.html",
-        "Report PPTS": "reports/Weekly/sales-summary.html",
-        "Input LPB Minyak": "reports/daily/select_lpb_oil.html",
-        "Input LPB Frozen": "reports/daily/select_lpb_frozen.html",
-        "Input LPB Dry": "reports/daily/select_lpb_dry.html",
-        "Input I-Quest": "https://forms.gle/t4ucoQhWz2HiTgif8",
-        "Feedback Dine In": "https://update.hokben.co.id/survey/2?&kdstore=129&valid=0",
-        "Feedback TA": "https://update.hokben.co.id/survey/3?&kdstore=129&valid=0",
+       
         
         // MONTHLY REPORTS
         "PNL": "https://ekabogainti-my.sharepoint.com/:x:/g/personal/arinto_purnomo_hokben_co_id/IQBII-n_48tcRonPXN0uonWxAdFUZ5lBC-rvmTEzIR0pOBo?e=dXzndy",
@@ -427,6 +425,9 @@
         
         
         // APP REPORTS
+        "Report PPTS": "reports/Weekly/sales-summary.html",
+        "Report Promo": "reports/Weekly/sales-summary.html",
+        "Weekly Kursi": "reports/Weekly/sales-summary.html",
         "Juklak Promo": "reports/incident/kebersihan.html",
         "Memo OPS": "reports/incident/kecelakaan-kerja.html",
         "PKWT": "reports/Weekly/sales-summary.html",
@@ -451,13 +452,14 @@
     // ===================== DATA LAPORAN =====================
     const reportsDB = {
         daily: [
-            "Line Bar", "Form Organoleptik", "Form Penerimaan Barang", "Form Log Book", "Buku Briefing",
+            "Line Bar", "Input LPB Minyak", "Input LPB Frozen",
+            "Input LPB Dry", "Input I-Quest", "Weekly KFM", "Feedback Dine In", "Feedback TA"
+        ],
+        weekly: [
+            "Form Organoleptik", "Form Penerimaan Barang", "Form Log Book", "Buku Briefing",
             "New Bincard Frozen", "New Bincard Dry", "Perhitungan Minyak", "Suhu Ambience", "Suhu Equipment",
             "Suhu Product", "Holding Time", "Kontrol Pemasakan Menu Basah", "Kontrol Pemasakan Nasi",
             "Food Safety", "Utility"
-        ],
-        weekly: [
-            "Report Promo", "Report Kursi" , "Report PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry", "Input I-Quest", "Weekly KFM", "Feedback Dine In", "Feedback TA"
         ],
         monthly: [
             "PNL", "Inventory", "Dep Task", "RMO" , " Report Improvement", "TCMH"
@@ -467,7 +469,7 @@
             "Bisnis Plan", "Breakdown Sales" , "IPP", "Kinerja Karyawan", "Peer To Peer", "Cuti Karyawan", "Kas Karyawan"
         ],
         app: [
-            "Juklak Promo", "Memo OPS", "PKWT", "Sanksi"
+            "Report Promo", "Report Kursi" , "Report PPTS","Juklak Promo", "Memo OPS", "PKWT", "Sanksi"
         ]
     };
     
@@ -555,7 +557,7 @@
         const container = document.getElementById('reportGrid');
         if (!container) return;
         
-        const categoryNames = { daily: "Daily Report", weekly: "QA Index Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
+        const categoryNames = { daily: "Daily Report", weekly: "QA Index Report", monthly: "Monthly Report", annual: "Annual Report", app: "Arsip Report" };
         const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan QA Index", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
