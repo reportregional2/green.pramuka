@@ -336,7 +336,7 @@
                 </div>
                 <div class="category-item" data-category="qaindex">
                     <i class="fas fa-calendar-week"></i>
-                    <span>QA Index</span>
+                    <span>Weekly</span>
                 </div>
                 <div class="category-item" data-category="monthly">
                     <i class="fas fa-calendar-alt"></i>
@@ -399,10 +399,10 @@
         "Food Safety": "reports/daily/select_food_safety.html",
         "Utility": "reports/daily/select_utility.html",
         
-        // QA Index REPORTS
-        "Report Promo": "reports/QA Index/sales-summary.html",
-        "QA Index Kursi": "reports/QA Index/sales-summary.html",
-        "Report PPTS": "reports/QA Index/sales-summary.html",
+        // Weekly REPORTS
+        "Report Promo": "reports/Weekly/sales-summary.html",
+        "Weekly Kursi": "reports/Weekly/sales-summary.html",
+        "Report PPTS": "reports/Weekly/sales-summary.html",
         "Input LPB Minyak": "reports/daily/select_lpb_oil.html",
         "Input LPB Frozen": "reports/daily/select_lpb_frozen.html",
         "Input LPB Dry": "reports/daily/select_lpb_dry.html",
@@ -429,8 +429,8 @@
         // APP REPORTS
         "Juklak Promo": "reports/incident/kebersihan.html",
         "Memo OPS": "reports/incident/kecelakaan-kerja.html",
-        "PKWT": "reports/QA Index/sales-summary.html",
-        "Sanksi": "reports/QA Index/sales-summary.html",
+        "PKWT": "reports/Weekly/sales-summary.html",
+        "Sanksi": "reports/Weekly/sales-summary.html",
         
     };
     
@@ -456,8 +456,8 @@
             "Suhu Product", "Holding Time", "Kontrol Pemasakan Menu Basah", "Kontrol Pemasakan Nasi",
             "Food Safety", "Utility"
         ],
-        qa index: [
-            "Report Promo", "Report Kursi" , "Report PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry", "Input I-Quest", "QA Index KFM", "Feedback Dine In", "Feedback TA"
+        Weekly: [
+            "Report Promo", "Report Kursi" , "Report PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry", "Input I-Quest", "Weekly KFM", "Feedback Dine In", "Feedback TA"
         ],
         monthly: [
             "PNL", "Inventory", "Dep Task", "RMO" , " Report Improvement", "TCMH"
@@ -555,7 +555,7 @@
         const container = document.getElementById('reportGrid');
         if (!container) return;
         
-        const categoryNames = { daily: "Daily Report", qaindex: "QA Index Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
+        const categoryNames = { daily: "Daily Report", qaindex: "Weekly Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
         const descMap = { daily: "Laporan harian - klik untuk mengisi", qaindex: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
