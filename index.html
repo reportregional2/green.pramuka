@@ -108,8 +108,8 @@
         /* WARNA BERBEDA UNTUK SETIAP KATEGORI */
         .category-item[data-category="daily"] i { color: #F39C12; }
         .category-item[data-category="daily"] span { color: #D35400; font-weight: 700; }
-        .category-item[data-category="qaindex"] i { color: #2ECC71; }
-        .category-item[data-category="qaindex"] span { color: #229954; font-weight: 700; }
+        .category-item[data-category="weekly"] i { color: #2ECC71; }
+        .category-item[data-category="weekly"] span { color: #229954; font-weight: 700; }
         .category-item[data-category="monthly"] i { color: #3498DB; }
         .category-item[data-category="monthly"] span { color: #2471A3; font-weight: 700; }
         .category-item[data-category="annual"] i { color: #9B59B6; }
@@ -334,9 +334,9 @@
                     <span>Daily</span>
                     <div class="reminder-dot" id="dailyReminderDot" style="display: none;"></div>
                 </div>
-                <div class="category-item" data-category="qaindex">
+                <div class="category-item" data-category="weekly">
                     <i class="fas fa-calendar-week"></i>
-                    <span>Weekly</span>
+                    <span>QA Index</span>
                 </div>
                 <div class="category-item" data-category="monthly">
                     <i class="fas fa-calendar-alt"></i>
@@ -555,8 +555,8 @@
         const container = document.getElementById('reportGrid');
         if (!container) return;
         
-        const categoryNames = { daily: "Daily Report", qaindex: "Weekly Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
-        const descMap = { daily: "Laporan harian - klik untuk mengisi", qaindex: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
+        const categoryNames = { daily: "Daily Report", weekly: "QA Index Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
+        const descMap = { daily: "Laporan harian - klik untuk mengisi", weekly: "Laporan QA Index", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
         
