@@ -478,6 +478,7 @@
     function getIconStyle(reportName) {
         const lower = reportName.toLowerCase();
         if (lower.includes('line')) return { icon: 'fa-chart-line', bg: '#FFE8D6', color: '#E67E22' };
+         if (lower.includes('plan')) return { icon: 'fa-chart-line', bg: '#FFE8D6', color: '#E67E22' };
         if (lower.includes('organoleptik')) return { icon: 'fa-clipboard-list', bg: '#FDE2E4', color: '#E84393' };
         if (lower.includes('penerimaan')) return { icon: 'fa-dolly', bg: '#D4F1F9', color: '#1F6392' };
         if (lower.includes('log book')) return { icon: 'fa-book', bg: '#E8EAF6', color: '#5D6D7E' };
@@ -495,12 +496,11 @@
         if (lower.includes('pnl')) return { icon: 'fa-wallet', bg: '#FFF2CC', color: '#C0392B' };
          if (lower.includes('respon')) return { icon: 'fa-wallet', bg: '#FFF2CC', color: '#C0392B' };
         if (lower.includes('dept task')) return { icon: 'fa-bullhorn', bg: '#FFF2CC', color: '#C0392B' };
-        if (lower.includes('report kursi')) return { icon: 'fa-chair', bg: '#CCF2E6', color: '#148F77' };
-        if (lower.includes('report promo')) return { icon: 'fa-bullhorn', bg: '#CCF2E6', color: '#148F77' };
+        if (lower.includes('kursi')) return { icon: 'fa-chair', bg: '#CCF2E6', color: '#148F77' };
+        if (lower.includes('report')) return { icon: 'fa-bullhorn', bg: '#CCF2E6', color: '#148F77' };
         if (lower.includes('Feedback')) return { icon: 'fa-box-open', bg: '#CCF2E6', color: '#148F77' };
         if (lower.includes('breakdown sales')) return { icon: 'fa-cart-area', bg: '#E8DAEF', color: '#8E44AD' };
-        if (lower.includes('bisnis plan')) return { icon: 'fa-cart-simple', bg: '#E8DAEF', color: '#8E44AD' };
-        if (lower.includes('juklak promo')) return { icon: 'fa-bandage', bg: '#FDE2E4', color: '#E84393' };
+        if (lower.includes('promo')) return { icon: 'fa-bandage', bg: '#FDE2E4', color: '#E84393' };
         if (lower.includes('memo ops')) return { icon: 'fa-book-open', bg: '#FDE2E4', color: '#E84393' };
         if (lower.includes('PKWT')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
         if (lower.includes('inventory')) return { icon: 'fa-cubes', bg: '#F9E79F', color: '#F1C40F' };
