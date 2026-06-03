@@ -108,8 +108,8 @@
         /* WARNA BERBEDA UNTUK SETIAP KATEGORI */
         .category-item[data-category="daily"] i { color: #F39C12; }
         .category-item[data-category="daily"] span { color: #D35400; font-weight: 700; }
-        .category-item[data-category="QA Index"] i { color: #2ECC71; }
-        .category-item[data-category="QA Index"] span { color: #229954; font-weight: 700; }
+        .category-item[data-category="qaindex"] i { color: #2ECC71; }
+        .category-item[data-category="qaindex"] span { color: #229954; font-weight: 700; }
         .category-item[data-category="monthly"] i { color: #3498DB; }
         .category-item[data-category="monthly"] span { color: #2471A3; font-weight: 700; }
         .category-item[data-category="annual"] i { color: #9B59B6; }
@@ -334,7 +334,7 @@
                     <span>Daily</span>
                     <div class="reminder-dot" id="dailyReminderDot" style="display: none;"></div>
                 </div>
-                <div class="category-item" data-category="QA Index">
+                <div class="category-item" data-category="qaindex">
                     <i class="fas fa-calendar-week"></i>
                     <span>QA Index</span>
                 </div>
@@ -400,9 +400,9 @@
         "Utility": "reports/daily/select_utility.html",
         
         // QA Index REPORTS
-        "QA Index Promo": "reports/QA Index/sales-summary.html",
+        "Report Promo": "reports/QA Index/sales-summary.html",
         "QA Index Kursi": "reports/QA Index/sales-summary.html",
-        "QA Index PPTS": "reports/QA Index/sales-summary.html",
+        "Report PPTS": "reports/QA Index/sales-summary.html",
         "Input LPB Minyak": "reports/daily/select_lpb_oil.html",
         "Input LPB Frozen": "reports/daily/select_lpb_frozen.html",
         "Input LPB Dry": "reports/daily/select_lpb_dry.html",
@@ -456,8 +456,8 @@
             "Suhu Product", "Holding Time", "Kontrol Pemasakan Menu Basah", "Kontrol Pemasakan Nasi",
             "Food Safety", "Utility"
         ],
-        QA Index: [
-            "QA Index Promo", "QA Index Kursi" , "QA Index PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry", "Input I-Quest", "QA Index KFM", "Feedback Dine In", "Feedback TA"
+        qa index: [
+            "Report Promo", "Report Kursi" , "Report PPTS", "Input LPB Minyak", "Input LPB Frozen", "Input LPB Dry", "Input I-Quest", "QA Index KFM", "Feedback Dine In", "Feedback TA"
         ],
         monthly: [
             "PNL", "Inventory", "Dep Task", "RMO" , " Report Improvement", "TCMH"
@@ -491,8 +491,8 @@
         if (lower.includes('ipp')) return { icon: 'fa-stamp', bg: '#E8DAEF', color: '#8E44AD' };
         if (lower.includes('pnl')) return { icon: 'fa-wallet', bg: '#FFF2CC', color: '#C0392B' };
         if (lower.includes('dept task')) return { icon: 'fa-bullhorn', bg: '#FFF2CC', color: '#C0392B' };
-        if (lower.includes('QA Index kursi')) return { icon: 'fa-chair', bg: '#CCF2E6', color: '#148F77' };
-        if (lower.includes('QA Index promo')) return { icon: 'fa-bullhorn', bg: '#CCF2E6', color: '#148F77' };
+        if (lower.includes('report kursi')) return { icon: 'fa-chair', bg: '#CCF2E6', color: '#148F77' };
+        if (lower.includes('report promo')) return { icon: 'fa-bullhorn', bg: '#CCF2E6', color: '#148F77' };
         if (lower.includes('Feedback')) return { icon: 'fa-box-open', bg: '#CCF2E6', color: '#148F77' };
         if (lower.includes('breakdown sales')) return { icon: 'fa-cart-area', bg: '#E8DAEF', color: '#8E44AD' };
         if (lower.includes('bisnis plan')) return { icon: 'fa-cart-simple', bg: '#E8DAEF', color: '#8E44AD' };
@@ -555,8 +555,8 @@
         const container = document.getElementById('reportGrid');
         if (!container) return;
         
-        const categoryNames = { daily: "Daily Report", QA Index: "QA Index Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
-        const descMap = { daily: "Laporan harian - klik untuk mengisi", QA Index: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
+        const categoryNames = { daily: "Daily Report", qaindex: "QA Index Report", monthly: "Monthly Report", annual: "Annual Report", app: "App Report" };
+        const descMap = { daily: "Laporan harian - klik untuk mengisi", qaindex: "Laporan mingguan", monthly: "Laporan bulanan", annual: "Laporan tahunan", app: "Arsip Operasional" };
         document.getElementById('categoryName').innerText = categoryNames[category];
         document.getElementById('categoryDesc').innerText = descMap[category];
         
