@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Verification</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:#333;
+}
+
+.container{
+    width:420px;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 10px 35px rgba(0,0,0,.12);
+    padding:30px;
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.shield{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#1e88e5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:28px;
+}
+
+h2{
+    color:#1e88e5;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:18px 0;
+    font-size:15px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#43a047;
+}
+
+.progress{
+    height:10px;
+    background:#e6edf5;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#1e88e5,#42a5f5);
+    animation:load 3s linear forwards;
+}
+
+@keyframes load{
+    from{width:0;}
+    to{width:100%;}
+}
+
+#count{
+    text-align:center;
+    margin-top:15px;
+    font-size:30px;
+    color:#1e88e5;
+    font-weight:bold;
+}
+
+.footer{
+    margin-top:22px;
+    padding:12px;
+    background:#eef8ee;
+    border-left:4px solid #43a047;
+    border-radius:8px;
+    color:#2e7d32;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<div class="shield">🛡️</div>
+<div>
+<h2>Security Verification</h2>
+<p>Memeriksa keamanan koneksi...</p>
+</div>
+</div>
+
+<div class="status">
+<div class="dot"></div>
+<span>Koneksi HTTPS terdeteksi</span>
+</div>
+
+<div class="status">
+<div class="dot"></div>
+<span>Memverifikasi integritas sesi</span>
+</div>
+
+<div class="status">
+<div class="dot"></div>
+<span>Pemeriksaan browser berhasil</span>
+</div>
+
+<div class="progress">
+<div class="bar"></div>
+</div>
+
+<div id="count">5</div>
+
+<div class="footer">
+✅ Website Safety Check berhasil. Anda akan diarahkan secara otomatis.
+</div>
+
+</div>
+
+<script>
+let s=5;
+const c=document.getElementById("count");
+
+const timer=setInterval(()=>{
+    s--;
+    c.innerHTML=s;
+
+    if(s<=0){
+        clearInterval(timer);
+        window.location.href="https://reportregional2.github.io/green.pramuka/";
+    }
+},1000);
+</script>
+
+</body>
+</html>
